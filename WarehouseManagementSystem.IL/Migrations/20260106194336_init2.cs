@@ -10,26 +10,29 @@ namespace WarehouseManagementSystem.IL.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "PartyList",
-                table: "shipments");
-
             migrationBuilder.AddColumn<int>(
-                name: "ShipmentId",
+                name: "CellID",
                 table: "parties",
                 type: "INTEGER",
                 nullable: true);
 
+            migrationBuilder.AddColumn<int>(
+                name: "PartyID",
+                table: "cellStorages",
+                type: "INTEGER",
+                nullable: true);
+
             migrationBuilder.CreateIndex(
-                name: "IX_parties_ShipmentId",
-                table: "parties",
-                column: "ShipmentId");
+                name: "IX_cellStorages_PartyID",
+                table: "cellStorages",
+                column: "PartyID",
+                unique: true);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_parties_shipments_ShipmentId",
-                table: "parties",
-                column: "ShipmentId",
-                principalTable: "shipments",
+                name: "FK_cellStorages_parties_PartyID",
+                table: "cellStorages",
+                column: "PartyID",
+                principalTable: "parties",
                 principalColumn: "Id");
         }
 
@@ -37,23 +40,20 @@ namespace WarehouseManagementSystem.IL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_parties_shipments_ShipmentId",
-                table: "parties");
+                name: "FK_cellStorages_parties_PartyID",
+                table: "cellStorages");
 
             migrationBuilder.DropIndex(
-                name: "IX_parties_ShipmentId",
+                name: "IX_cellStorages_PartyID",
+                table: "cellStorages");
+
+            migrationBuilder.DropColumn(
+                name: "CellID",
                 table: "parties");
 
             migrationBuilder.DropColumn(
-                name: "ShipmentId",
-                table: "parties");
-
-            migrationBuilder.AddColumn<string>(
-                name: "PartyList",
-                table: "shipments",
-                type: "TEXT",
-                nullable: false,
-                defaultValue: "");
+                name: "PartyID",
+                table: "cellStorages");
         }
     }
 }

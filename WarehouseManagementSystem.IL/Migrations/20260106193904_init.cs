@@ -12,6 +12,19 @@ namespace WarehouseManagementSystem.IL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "cellStorages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cellStorages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "products",
                 columns: table => new
                 {
@@ -31,7 +44,6 @@ namespace WarehouseManagementSystem.IL.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    PartyList = table.Column<string>(type: "TEXT", nullable: false),
                     DateTime = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -46,6 +58,7 @@ namespace WarehouseManagementSystem.IL.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ProductID = table.Column<int>(type: "INTEGER", nullable: false),
+                    ShipmentID = table.Column<int>(type: "INTEGER", nullable: false),
                     Count = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -57,25 +70,39 @@ namespace WarehouseManagementSystem.IL.Migrations
                         principalTable: "products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_parties_shipments_ShipmentID",
+                        column: x => x.ShipmentID,
+                        principalTable: "shipments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_parties_ProductID",
                 table: "parties",
                 column: "ProductID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_parties_ShipmentID",
+                table: "parties",
+                column: "ShipmentID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "cellStorages");
+
+            migrationBuilder.DropTable(
                 name: "parties");
 
             migrationBuilder.DropTable(
-                name: "shipments");
+                name: "products");
 
             migrationBuilder.DropTable(
-                name: "products");
+                name: "shipments");
         }
     }
 }

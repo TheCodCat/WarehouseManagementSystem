@@ -30,4 +30,4 @@ using (var scope = app.Services.CreateScope())
 
 app.MapGrpcService<ShipmentService>();
 
-	app.Run();
+app.Run();

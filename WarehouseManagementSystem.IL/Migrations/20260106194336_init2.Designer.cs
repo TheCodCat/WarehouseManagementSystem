@@ -11,8 +11,8 @@ using WarehouseManagementSystem.IL.databases;
 namespace WarehouseManagementSystem.IL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260104184342_init")]
-    partial class init
+    [Migration("20260106194336_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,10 +20,34 @@ namespace WarehouseManagementSystem.IL.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
 
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.CellStorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PartyID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PartyID")
+                        .IsUnique();
+
+                    b.ToTable("cellStorages");
+                });
+
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CellID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Count")
@@ -32,9 +56,14 @@ namespace WarehouseManagementSystem.IL.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ShipmentID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductID");
+
+                    b.HasIndex("ShipmentID");
 
                     b.ToTable("parties");
                 });
@@ -65,13 +94,18 @@ namespace WarehouseManagementSystem.IL.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
-                    b.PrimitiveCollection<string>("PartyList")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.ToTable("shipments");
+                });
+
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.CellStorage", b =>
+                {
+                    b.HasOne("WarehouseManagementSystem.DL.models.Party", "Party")
+                        .WithOne("CellStorage")
+                        .HasForeignKey("WarehouseManagementSystem.DL.models.CellStorage", "PartyID");
+
+                    b.Navigation("Party");
                 });
 
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>
@@ -82,7 +116,25 @@ namespace WarehouseManagementSystem.IL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WarehouseManagementSystem.DL.models.Shipment", "Shipment")
+                        .WithMany("PartyList")
+                        .HasForeignKey("ShipmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("Shipment");
+                });
+
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>
+                {
+                    b.Navigation("CellStorage");
+                });
+
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.Shipment", b =>
+                {
+                    b.Navigation("PartyList");
                 });
 #pragma warning restore 612, 618
         }

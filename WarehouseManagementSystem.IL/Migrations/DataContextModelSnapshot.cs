@@ -17,6 +17,26 @@ namespace WarehouseManagementSystem.IL.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
 
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.CellStorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PartyID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PartyID");
+
+                    b.ToTable("cellStorages");
+                });
+
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>
                 {
                     b.Property<int>("Id")
@@ -70,6 +90,15 @@ namespace WarehouseManagementSystem.IL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("shipments");
+                });
+
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.CellStorage", b =>
+                {
+                    b.HasOne("WarehouseManagementSystem.DL.models.Party", "Party")
+                        .WithMany()
+                        .HasForeignKey("PartyID");
+
+                    b.Navigation("Party");
                 });
 
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>

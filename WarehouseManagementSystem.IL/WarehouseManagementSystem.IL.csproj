@@ -24,4 +24,8 @@
     <ProjectReference Include="..\WarehouseManagementSystem.DL\WarehouseManagementSystem.DL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

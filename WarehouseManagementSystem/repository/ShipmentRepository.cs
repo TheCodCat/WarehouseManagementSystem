@@ -20,9 +20,21 @@ namespace WarehouseManagementSystem.PL.repository
 				PartyList = parties
 			};
 
+			var listcell = dataContext.cellStorages.Where(x => x.Party == null).ToList();
 			for (int i = 0; i < parties.Length; i++)
 			{
-				var item = dataContext.parties.Add(parties[i]);
+				dataContext.parties.Add(parties[i]);
+
+				var cell = listcell.FirstOrDefault();
+				if (cell is not null)
+				{
+					cell.Party = parties[i];
+					listcell.Remove(cell);
+				}
+				else
+				{
+					//какаято логика
+				}
 
 				dataContext.products.Add(parties[i].Product);
 			}

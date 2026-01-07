@@ -11,7 +11,7 @@ using WarehouseManagementSystem.IL.databases;
 namespace WarehouseManagementSystem.IL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260105162922_init3")]
+    [Migration("20260106194849_init3")]
     partial class init3
     {
         /// <inheritdoc />
@@ -19,6 +19,26 @@ namespace WarehouseManagementSystem.IL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
+
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.CellStorage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("PartyID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PartyID");
+
+                    b.ToTable("cellStorages");
+                });
 
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>
                 {
@@ -32,14 +52,14 @@ namespace WarehouseManagementSystem.IL.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ShipmentId")
+                    b.Property<int>("ShipmentID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductID");
 
-                    b.HasIndex("ShipmentId");
+                    b.HasIndex("ShipmentID");
 
                     b.ToTable("parties");
                 });
@@ -75,6 +95,15 @@ namespace WarehouseManagementSystem.IL.Migrations
                     b.ToTable("shipments");
                 });
 
+            modelBuilder.Entity("WarehouseManagementSystem.DL.models.CellStorage", b =>
+                {
+                    b.HasOne("WarehouseManagementSystem.DL.models.Party", "Party")
+                        .WithMany()
+                        .HasForeignKey("PartyID");
+
+                    b.Navigation("Party");
+                });
+
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Party", b =>
                 {
                     b.HasOne("WarehouseManagementSystem.DL.models.Product", "Product")
@@ -83,11 +112,15 @@ namespace WarehouseManagementSystem.IL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WarehouseManagementSystem.DL.models.Shipment", null)
+                    b.HasOne("WarehouseManagementSystem.DL.models.Shipment", "Shipment")
                         .WithMany("PartyList")
-                        .HasForeignKey("ShipmentId");
+                        .HasForeignKey("ShipmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
+
+                    b.Navigation("Shipment");
                 });
 
             modelBuilder.Entity("WarehouseManagementSystem.DL.models.Shipment", b =>
