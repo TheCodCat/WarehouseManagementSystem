@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
+using WarehouseManagementSystem.AL.Dtos;
 using WarehouseManagementSystem.DL.interfaces;
 using WarehouseManagementSystem.DL.models;
 using WarehouseManagementSystem.IL.databases;
@@ -46,6 +48,15 @@ namespace WarehouseManagementSystem.PL.repository
 
 			dataContext.shipments.Add(shipment);
 			dataContext.SaveChanges();
+		}
+
+		public async Task<ShipmentParty[]> GetShipment(DateTime dateTime)
+		{
+			var partyes = dataContext.parties.Where(x => x.Shipment.DateTime == dateTime).OrderBy(x => x.CellStorage)
+				.Select(x => new ShipmentPartyDto() { Id = x.Id, CellTitle = x.CellStorage.Title, Party = x }).ToList();
+			var result = partyes.Select(x => new ShipmentParty() { Id = x.Id, CellTitle = x.CellTitle, Party = x.Party });
+
+			return result.ToArray();
 		}
 	}
 }

@@ -14,9 +14,14 @@ namespace WarehouseManagementSystem.AL.services
 			this.unitOfWork = unitOfWork;
 		}
 
-		public void AddShipment(ShipmentDto request)
+		public async void AddShipment(DateTime dateTime,ShipmentDto request)
 		{
-			unitOfWork.ShipmentRepository.AddShipment(DateTime.UtcNow, request.Partys.Adapt<Party[]>());
+			unitOfWork.ShipmentRepository.AddShipment(dateTime, request.Partys.Adapt<Party[]>());
+		}
+
+		public async Task<ShipmentParty[]> GetShipment(DateTime dateTime)
+		{
+			return await unitOfWork.ShipmentRepository.GetShipment(dateTime);
 		}
 	}
 }
