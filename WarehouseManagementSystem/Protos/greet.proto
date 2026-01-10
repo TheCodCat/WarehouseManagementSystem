@@ -24,5 +24,4 @@ message Product{
 }
 
 message ShipmentResponce{
-
 }

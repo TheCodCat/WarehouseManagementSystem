@@ -1,6 +1,8 @@
-﻿using WarehouseManagementSystem.DL.interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using WarehouseManagementSystem.DL.interfaces;
 using WarehouseManagementSystem.DL.models;
 using WarehouseManagementSystem.IL.databases;
+using WarehouseManagementSystem.PL.models;
 
 namespace WarehouseManagementSystem.PL.repository
 {
@@ -20,24 +22,28 @@ namespace WarehouseManagementSystem.PL.repository
 				PartyList = parties
 			};
 
-			var listcell = dataContext.cellStorages.Where(x => x.Party == null).ToList();
-			for (int i = 0; i < parties.Length; i++)
+			var cells = dataContext.cellStorages
+				.Select(x => new CellCount() { CellStorage = x, Count = 0 }).ToArray();
+
+			var cellsParty = dataContext.parties.GroupBy(x => x.CellStorage)
+				.Select(x => new CellCount() { CellStorage = x.Key, Count = x.Count() });
+
+			foreach (var item in cellsParty)
 			{
-				dataContext.parties.Add(parties[i]);
-
-				var cell = listcell.FirstOrDefault();
-				if (cell is not null)
-				{
-					cell.Party = parties[i];
-					listcell.Remove(cell);
-				}
-				else
-				{
-					//какаято логика
-				}
-
-				dataContext.products.Add(parties[i].Product);
+				var cell = cells.FirstOrDefault(x => x.CellStorage == item.CellStorage);
+				cell.Count = item.Count;
 			}
+
+			foreach (var party in parties)
+			{
+				var cell = cells.Where(x => x.Count == cells.Min(x => x.Count)).FirstOrDefault();
+				party.CellStorage = cell.CellStorage;
+				cell.Count++;
+
+				dataContext.parties.Add(party);
+				dataContext.products.Add(party.Product);
+			}
+
 			dataContext.shipments.Add(shipment);
 			dataContext.SaveChanges();
 		}

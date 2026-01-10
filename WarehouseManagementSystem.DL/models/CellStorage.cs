@@ -6,7 +6,5 @@ namespace WarehouseManagementSystem.DL.models
 	{
 		[Key] public int Id { get; set; }
 		public string Title { get; set; } = string.Empty;
-		[ForeignKey("PartyID")] public Party? Party { get; set; }
-		public int? PartyID { get; set; }
 	}
 }
