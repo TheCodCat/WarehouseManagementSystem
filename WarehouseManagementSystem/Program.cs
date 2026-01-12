@@ -1,10 +1,13 @@
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Security;
+using WarehouseManagementSystem.AL.Dtos;
 using WarehouseManagementSystem.AL.services;
 using WarehouseManagementSystem.DL.interfaces;
 using WarehouseManagementSystem.IL.databases;
 using WarehouseManagementSystem.PL.repository;
 using WarehouseManagementSystem.PL.Services;
+using WarehouseManagementSystemServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +18,18 @@ builder.Services.AddGrpcReflection();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ShipmentServiceAL>();
+builder.Services.AddScoped<ProductServiceAL>();
+
+TypeAdapterConfig<ProductDto, Product>
+	.NewConfig()
+	.ConstructUsing(srs => new Product()
+	{
+		Id = srs.Id,
+		Name = srs.Name,
+		Description = srs.Description
+	});
 
 var app = builder.Build();
 app.MapGrpcReflectionService();
@@ -29,5 +43,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.MapGrpcService<ShipmentService>();
+app.MapGrpcService<ProductorService>();
 
 app.Run();

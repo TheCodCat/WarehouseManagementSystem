@@ -26,4 +26,8 @@
     <ProjectReference Include="..\WarehouseManagementSystem.IL\WarehouseManagementSystem.IL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Новая папка\" />
+  </ItemGroup>
+
 </Project>

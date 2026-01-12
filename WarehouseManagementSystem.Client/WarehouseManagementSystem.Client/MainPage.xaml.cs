@@ -6,10 +6,17 @@ namespace WarehouseManagementSystem.Client
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(Shipment.ShipmentClient shipmentClient)
+        MainViewModel mainViewModel;
+        public MainPage(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            BindingContext = new MainViewModel(shipmentClient);
+            BindingContext = mainViewModel;
+            this.mainViewModel = mainViewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            mainViewModel.GetAllProduct();
         }
     }
 
