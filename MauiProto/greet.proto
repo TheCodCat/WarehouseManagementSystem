@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "WarehouseManagementSystemClient";
+option csharp_namespace = "MauiProto";
 
 package greet;
 

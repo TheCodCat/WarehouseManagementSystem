@@ -11,7 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.AL", "WarehouseManagementSystem.AL\WarehouseManagementSystem.AL.csproj", "{7B7A58A6-34E7-4C4B-9B82-D91B07B48DE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystemClient", "WarehouseManagementSystemClient\WarehouseManagementSystemClient.csproj", "{A8BA5EA4-6DBE-4194-837D-80973CDFB3DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.Client", "WarehouseManagementSystem.Client\WarehouseManagementSystem.Client\WarehouseManagementSystem.Client.csproj", "{24383FE5-3C99-4E48-8AE4-3EBB12740D9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.Client.Droid", "WarehouseManagementSystem.Client\WarehouseManagementSystem.Client.Droid\WarehouseManagementSystem.Client.Droid.csproj", "{957D31EC-9858-462A-ACDB-F2594CEF31AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.Client.WinUI", "WarehouseManagementSystem.Client\WarehouseManagementSystem.Client.WinUI\WarehouseManagementSystem.Client.WinUI.csproj", "{8E3E7D96-0CD9-4481-8388-2308F6FBB77B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,11 +39,20 @@ Global
 		{7B7A58A6-34E7-4C4B-9B82-D91B07B48DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B7A58A6-34E7-4C4B-9B82-D91B07B48DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B7A58A6-34E7-4C4B-9B82-D91B07B48DE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8BA5EA4-6DBE-4194-837D-80973CDFB3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8BA5EA4-6DBE-4194-837D-80973CDFB3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8BA5EA4-6DBE-4194-837D-80973CDFB3DE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{A8BA5EA4-6DBE-4194-837D-80973CDFB3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8BA5EA4-6DBE-4194-837D-80973CDFB3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24383FE5-3C99-4E48-8AE4-3EBB12740D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24383FE5-3C99-4E48-8AE4-3EBB12740D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24383FE5-3C99-4E48-8AE4-3EBB12740D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24383FE5-3C99-4E48-8AE4-3EBB12740D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{957D31EC-9858-462A-ACDB-F2594CEF31AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{957D31EC-9858-462A-ACDB-F2594CEF31AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{957D31EC-9858-462A-ACDB-F2594CEF31AA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{957D31EC-9858-462A-ACDB-F2594CEF31AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{957D31EC-9858-462A-ACDB-F2594CEF31AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{957D31EC-9858-462A-ACDB-F2594CEF31AA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8E3E7D96-0CD9-4481-8388-2308F6FBB77B}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{8E3E7D96-0CD9-4481-8388-2308F6FBB77B}.Debug|Any CPU.Build.0 = Debug|x64
+		{8E3E7D96-0CD9-4481-8388-2308F6FBB77B}.Release|Any CPU.ActiveCfg = Release|x64
+		{8E3E7D96-0CD9-4481-8388-2308F6FBB77B}.Release|Any CPU.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
