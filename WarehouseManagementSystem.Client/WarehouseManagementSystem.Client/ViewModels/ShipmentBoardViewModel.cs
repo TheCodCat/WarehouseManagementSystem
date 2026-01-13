@@ -10,10 +10,8 @@ namespace WarehouseManagementSystem.Client.ViewModels
     public partial class MainViewModel
     {
         [ObservableProperty]
-        private ObservableCollection<ShipmentBoardDto> shipmentBoardDtos = new ObservableCollection<ShipmentBoardDto>()
-        {
-            new ShipmentBoardDto(){ Id = 24, Description = "asddsa", Title = "sdoiydf",Count = 1}
-        };
+        private ObservableCollection<ShipmentBoardDto> shipmentBoardDtos = new ObservableCollection<ShipmentBoardDto>();
+
         [RelayCommand]
         public async void AddCount(ShipmentBoardDto shipmentBoardDto)
         {
@@ -24,8 +22,6 @@ namespace WarehouseManagementSystem.Client.ViewModels
 
             var index = ShipmentBoardDtos.IndexOf(shipmentBoardDto);
             ShipmentBoardDtos[index] = clone;
-
-            //ShipmentBoardDtos.Remove(shipmentBoardDto);
         }
 
         [RelayCommand]

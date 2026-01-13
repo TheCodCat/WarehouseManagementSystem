@@ -41,17 +41,14 @@ namespace WarehouseManagementSystem.Client.ViewModels
         [RelayCommand]
         public async void AddShipment()
         {
-            //var result = await shipmentClient.SetShipmentAsync(new ShipmentRequest()
-            //{
-            //    Partys =
-            //    {
-            //        new Party(){ Count = 1, Product = new Product(){ Name = "asdasd", Id = 0, Description = "asdasd" }
-            //    }
-            //}});
+            var request = new ShipmentRequest();
+            request.Partys.AddRange(ShipmentBoardDtos.Adapt<List<Party>>());
+
+            var result = await shipmentClient.SetShipmentAsync(request);
         }
 
         partial void OnSelectedSearchChanging(string? oldValue, string newValue)
-      {
+     {
             if (string.IsNullOrEmpty(newValue)) return;
 
             Regex regex = new Regex(@"^(\d+)\\(.+?)\\(.+)$");

@@ -16,9 +16,11 @@ namespace WarehouseManagementSystem.PL.Services
 		}
 		public override async Task<ShipmentResponce> SetShipment(ShipmentRequest request, ServerCallContext context)
 		{
-			var time = DateTime.UtcNow;
-			shipmentServiceAL.AddShipment(time,request.Adapt<ShipmentDto>());
-			var shipmentParty = await shipmentServiceAL.GetShipment(time);
+			var requestAdapt = request.Adapt<ShipmentDto>();
+			requestAdapt.DateTime = DateTime.UtcNow;
+
+            shipmentServiceAL.AddShipment(requestAdapt);
+			var shipmentParty = await shipmentServiceAL.GetShipment(requestAdapt.DateTime);
 
 			var responce = new ShipmentResponce();
 			responce.Responce.AddRange(shipmentParty.Adapt<List<PartyResponce>>());

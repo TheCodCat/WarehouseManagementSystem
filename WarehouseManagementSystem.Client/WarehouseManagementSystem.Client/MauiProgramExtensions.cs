@@ -20,6 +20,7 @@ namespace WarehouseManagementSystem.Client
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddMaterialSymbolsFonts();
+                    fonts.AddFontAwesomeIconFonts();
                 });
 
             builder.Services.AddSingleton<MainViewModel>();
@@ -49,6 +50,19 @@ namespace WarehouseManagementSystem.Client
                     Id = src.Id,
                     Title = src.Name,
                     Description = src.Description
+                });
+
+            TypeAdapterConfig<ShipmentBoardDto, Party>
+                .NewConfig()
+                .ConstructUsing(src => new Party()
+                {
+                     Count = src.Count,
+                     Product = new Product()
+                     {
+                          Id = src.Id,
+                          Description = src.Description,
+                          Name = src.Title
+                     }
                 });
 #if DEBUG
             builder.Logging.AddDebug();
