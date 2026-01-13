@@ -51,11 +51,9 @@
     <MauiXaml Update="Components\ShipmentBoard.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
-  </ItemGroup>
-	
-	
-  <ItemGroup>
-    <Folder Include="Pages\" />
+    <MauiXaml Update="Pages\ProductAndCellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 
 </Project>

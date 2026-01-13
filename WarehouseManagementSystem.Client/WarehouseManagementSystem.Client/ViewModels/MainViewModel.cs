@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using WarehouseManagementSystem.Client.Models;
 using WarehouseManagementSystemServer;
 using FastCloner;
+using WarehouseManagementSystem.Client.Pages;
 
 namespace WarehouseManagementSystem.Client.ViewModels
 {
@@ -12,6 +13,7 @@ namespace WarehouseManagementSystem.Client.ViewModels
     {
         private readonly Shipment.ShipmentClient shipmentClient;
         private readonly Productor.ProductorClient productorClient;
+        private readonly IServiceProvider services;
 
         [ObservableProperty]
         private List<ProductMaui> productMaui = new List<ProductMaui>();
@@ -22,10 +24,11 @@ namespace WarehouseManagementSystem.Client.ViewModels
         [ObservableProperty]
         private bool isRequest;
 
-        public MainViewModel(Shipment.ShipmentClient shipmentClient, Productor.ProductorClient productorClient)
+        public MainViewModel(Shipment.ShipmentClient shipmentClient, Productor.ProductorClient productorClient, IServiceProvider serviceCollection)
         {
             this.shipmentClient = shipmentClient;
             this.productorClient = productorClient;
+            services = serviceCollection;
         }
 
         public async void GetAllProduct()
@@ -56,6 +59,10 @@ namespace WarehouseManagementSystem.Client.ViewModels
                 request.Partys.AddRange(ShipmentBoardDtos.Adapt<List<Party>>());
 
                 var result = await shipmentClient.SetShipmentAsync(request);
+
+                var mainPage = services.GetRequiredService<MainPage>();
+                mainPage.Navigation.PushAsync(new ProductAndCellPage(services.GetRequiredService<ProductAndCellViewModel>()));
+                services.GetRequiredService<ProductAndCellViewModel>().ShipmentResponce = result;
             }
             catch(Exception ex)
             {
