@@ -39,11 +39,14 @@ namespace WarehouseManagementSystem.PL.repository
 			foreach (var party in parties)
 			{
 				var cell = cells.Where(x => x.Count == cells.Min(x => x.Count)).FirstOrDefault();
+				var product = dataContext.products.FirstOrDefault(x => x.Id == party.Product.Id);
 				party.CellStorage = cell.CellStorage;
-				cell.Count++;
+				party.Product = product;
+
+                cell.Count++;
 
 				dataContext.parties.Add(party);
-				dataContext.products.Add(party.Product);
+				//dataContext.products.Add(party.Product);
 			}
 
 			dataContext.shipments.Add(shipment);

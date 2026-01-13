@@ -19,6 +19,9 @@ namespace WarehouseManagementSystem.Client.ViewModels
         [ObservableProperty]
         private string selectedSearch;
 
+        [ObservableProperty]
+        private bool isRequest;
+
         public MainViewModel(Shipment.ShipmentClient shipmentClient, Productor.ProductorClient productorClient)
         {
             this.shipmentClient = shipmentClient;
@@ -29,6 +32,7 @@ namespace WarehouseManagementSystem.Client.ViewModels
         {
             try
             {
+                IsRequest = true;
                 var result = await productorClient.GetAllProductAsync(new Google.Protobuf.WellKnownTypes.Empty());
                 ProductMaui = result.Products.Adapt<List<ProductMaui>>();
             }
@@ -36,15 +40,31 @@ namespace WarehouseManagementSystem.Client.ViewModels
             {
                 ProductMaui = new List<ProductMaui>();
             }
+            finally
+            {
+                IsRequest = false;
+            }
         }
 
         [RelayCommand]
         public async void AddShipment()
         {
-            var request = new ShipmentRequest();
-            request.Partys.AddRange(ShipmentBoardDtos.Adapt<List<Party>>());
+            try
+            {
+                IsRequest = true;
+                var request = new ShipmentRequest();
+                request.Partys.AddRange(ShipmentBoardDtos.Adapt<List<Party>>());
 
-            var result = await shipmentClient.SetShipmentAsync(request);
+                var result = await shipmentClient.SetShipmentAsync(request);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+                IsRequest = false;
+            }
         }
 
         partial void OnSelectedSearchChanging(string? oldValue, string newValue)

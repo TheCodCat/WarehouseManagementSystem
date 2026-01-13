@@ -32,7 +32,7 @@
             </Image>
         </material:ButtonView>
 
-        <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" IsVisible="False"/>
+        <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding IsRequest}" IsRunning="{Binding IsRequest}"/>
     </Grid>
 
 </ContentPage>
