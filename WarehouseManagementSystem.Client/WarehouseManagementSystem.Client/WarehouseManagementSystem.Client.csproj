@@ -23,6 +23,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="FastCloner" Version="3.4.0" />
 		<PackageReference Include="Google.Protobuf" Version="3.33.3" />
 		<PackageReference Include="Grpc.Net.Client" Version="2.76.0" />
 		<PackageReference Include="Grpc.Net.ClientFactory" Version="2.76.0" />
@@ -35,12 +36,20 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 		<PackageReference Include="UraniumUI" Version="2.14.0" />
+		<PackageReference Include="UraniumUI.Icons.MaterialSymbols" Version="2.14.0" />
 		<PackageReference Include="UraniumUI.Material" Version="2.14.0" />
 	</ItemGroup>
 	
 	
   <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+  </ItemGroup>
+	
+	
+  <ItemGroup>
+    <MauiXaml Update="Components\ShipmentBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 
 </Project>

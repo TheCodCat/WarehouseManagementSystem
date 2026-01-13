@@ -1,12 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+using System.Text.RegularExpressions;
 using WarehouseManagementSystem.Client.Models;
 using WarehouseManagementSystemServer;
+using FastCloner;
 
 namespace WarehouseManagementSystem.Client.ViewModels
 {
@@ -16,7 +14,10 @@ namespace WarehouseManagementSystem.Client.ViewModels
         private readonly Productor.ProductorClient productorClient;
 
         [ObservableProperty]
-        private IList<ProductMaui> productMaui;
+        private List<ProductMaui> productMaui = new List<ProductMaui>();
+
+        [ObservableProperty]
+        private string selectedSearch;
 
         public MainViewModel(Shipment.ShipmentClient shipmentClient, Productor.ProductorClient productorClient)
         {
@@ -26,8 +27,15 @@ namespace WarehouseManagementSystem.Client.ViewModels
 
         public async void GetAllProduct()
         {
-            var result = await productorClient.GetAllProductAsync(new Google.Protobuf.WellKnownTypes.Empty());
-            ProductMaui = new List<ProductMaui>(result.Products.Adapt<ProductMaui[]>());
+            try
+            {
+                var result = await productorClient.GetAllProductAsync(new Google.Protobuf.WellKnownTypes.Empty());
+                ProductMaui = result.Products.Adapt<List<ProductMaui>>();
+            }
+            catch
+            {
+                ProductMaui = new List<ProductMaui>();
+            }
         }
 
         [RelayCommand]
@@ -40,6 +48,34 @@ namespace WarehouseManagementSystem.Client.ViewModels
             //        new Party(){ Count = 1, Product = new Product(){ Name = "asdasd", Id = 0, Description = "asdasd" }
             //    }
             //}});
+        }
+
+        partial void OnSelectedSearchChanging(string? oldValue, string newValue)
+      {
+            if (string.IsNullOrEmpty(newValue)) return;
+
+            Regex regex = new Regex(@"^(\d+)\\(.+?)\\(.+)$");
+            var result = regex.Match(newValue);
+            var id = result.Groups[1].Value;
+
+            int.TryParse(id, out int intId);
+            var anyProduct = ShipmentBoardDtos.FirstOrDefault(x => x.Id == intId);
+            if (anyProduct != null)
+            {
+                var clone = FastCloner.FastCloner.DeepClone(anyProduct);
+                clone.Count += 1;
+                var index = ShipmentBoardDtos.IndexOf(anyProduct);
+                ShipmentBoardDtos[index] = clone;
+            }
+            else
+            {
+                var product = ProductMaui.FirstOrDefault(x => x.Id == intId).Adapt<ShipmentBoardDto>();
+                product.Count = 1;
+
+                ShipmentBoardDtos.Add(product);
+            }
+
+            SelectedSearch = string.Empty;
         }
     }
 }

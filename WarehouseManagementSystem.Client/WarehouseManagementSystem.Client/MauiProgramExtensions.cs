@@ -19,6 +19,7 @@ namespace WarehouseManagementSystem.Client
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddMaterialSymbolsFonts();
                 });
 
             builder.Services.AddSingleton<MainViewModel>();
@@ -40,6 +41,15 @@ namespace WarehouseManagementSystem.Client
                 Name = srs.Name,
                 Description = srs.Description
             });
+
+            TypeAdapterConfig<ProductMaui, ShipmentBoardDto>
+                .NewConfig()
+                .ConstructUsing(src => new ShipmentBoardDto()
+                {
+                    Id = src.Id,
+                    Title = src.Name,
+                    Description = src.Description
+                });
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

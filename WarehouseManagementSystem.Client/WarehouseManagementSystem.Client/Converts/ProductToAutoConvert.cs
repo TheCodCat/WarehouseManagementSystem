@@ -11,9 +11,9 @@ namespace WarehouseManagementSystem.Client.Converts
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
        {
-            if(value is IList<ProductMaui> productMauis)
+            if(value is List<ProductMaui> productMauis)
             {
-                return productMauis.Select(x => $"{x.Id} {x.Name} {x.Description}");
+                return productMauis.Select(x => @$"{x.Id}\{x.Name}\{x.Description}").ToList();
             }
             else
                 return null;

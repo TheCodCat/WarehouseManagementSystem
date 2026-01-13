@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             xmlns:vm="clr-namespace:WarehouseManagementSystem.Client.ViewModels"
+             x:Class="WarehouseManagementSystem.Client.Components.ShipmentBoard">
+
+    <CollectionView ItemsSource="{Binding ShipmentBoardDtos}" Margin="10">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <VerticalStackLayout>
+                    <BoxView StyleClass="Divider"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label FontSize="16" Text="{Binding Id, StringFormat='Id товара - {0}'}"/>
+                            <Label FontSize="16" Text="{Binding Title, StringFormat='Название - {0}'}"/>
+                            <Label FontSize="16" Text="{Binding Description, StringFormat='Описание - {0}'}"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1">
+                            <material:TextField Text="{Binding Count}" Keyboard="Numeric" HorizontalTextAlignment="Center" CornerRadius="2"/>
+                            <HorizontalStackLayout>
+                                <material:ButtonView
+                                
+                                TappedCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=MinusCountCommand}" CommandParameter="{Binding .}"
+                                >
+                                    <material:ButtonView.StrokeShape>
+                                        <RoundRectangle CornerRadius="2"/>
+                                    </material:ButtonView.StrokeShape>
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Remove}"/>
+                                        </Image.Source>
+                                    </Image>
+                                </material:ButtonView>
+                                <material:ButtonView
+                                TappedCommand="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=AddCountCommand}" CommandParameter="{Binding .}">
+
+                                    <material:ButtonView.StrokeShape>
+                                        <RoundRectangle CornerRadius="2"/>
+                                    </material:ButtonView.StrokeShape>
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp" Glyph="{x:Static m:MaterialSharp.Add}"/>
+                                        </Image.Source>
+                                    </Image>
+                                </material:ButtonView>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentView>
