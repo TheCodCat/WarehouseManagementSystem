@@ -23,7 +23,8 @@ namespace WarehouseManagementSystem.Client
                     fonts.AddFontAwesomeIconFonts();
                 });
 
-            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddScoped<MainViewModel>();
+            builder.Services.AddScoped<ProductAndCellViewModel>();
             builder.Services.AddGrpcClient<Shipment.ShipmentClient>(o =>
             {
                 o.Address = new Uri("http://localhost:5103");
