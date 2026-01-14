@@ -39,6 +39,24 @@ TypeAdapterConfig<ShipmentRequest, ShipmentDto>
 		Id = 0,
 	});
 
+TypeAdapterConfig<PartyDto, PartyResponce>
+	.NewConfig()
+	.ConstructUsing(src => new PartyResponce()
+	{
+		 CellTitle = src.CellStorage.Title,
+		 Id = src.Id,
+		 Party = new Party()
+		 {
+			 Count = src.Count,
+			 Product = new Product()
+			 {
+				 Id = src.Product.Id,
+				 Description = src.Product.Description,
+				 Name = src.Product.Name 
+			 }
+		 }
+	});
+
 var app = builder.Build();
 app.MapGrpcReflectionService();
 // Configure the HTTP request pipeline.

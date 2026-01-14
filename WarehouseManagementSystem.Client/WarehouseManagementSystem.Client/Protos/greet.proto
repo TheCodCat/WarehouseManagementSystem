@@ -12,6 +12,7 @@ service Shipment{
 
 service Productor{
 	rpc GetAllProduct(google.protobuf.Empty) returns (AllProductResponce);
+	rpc GetPartiesToCell(google.protobuf.Empty) returns (ShipmentResponce);
 }
 
 message ShipmentRequest{

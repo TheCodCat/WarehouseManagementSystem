@@ -8,5 +8,6 @@ namespace WarehouseManagementSystem.DL.interfaces
     public interface IProductRepository
     {
         public Task<Product[]> GetProducts();
+        public Task<Party[]> GetParty();
     }
 }

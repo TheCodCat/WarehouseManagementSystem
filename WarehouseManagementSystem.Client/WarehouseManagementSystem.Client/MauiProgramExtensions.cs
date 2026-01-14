@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using UraniumUI;
 using WarehouseManagementSystem.Client.Models;
 using WarehouseManagementSystem.Client.Pages;
+using WarehouseManagementSystem.Client.Services;
 using WarehouseManagementSystem.Client.ViewModels;
 using WarehouseManagementSystemServer;
 
@@ -23,8 +24,9 @@ namespace WarehouseManagementSystem.Client
                     fonts.AddMaterialSymbolsFonts();
                     fonts.AddFontAwesomeIconFonts();
                 });
-            builder.Services.AddScoped<MainPage>();
-            builder.Services.AddScoped<ProductAndCellPage>();
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<ProductAndCellPage>();
             builder.Services.AddScoped<MainViewModel>();
             builder.Services.AddScoped<ProductAndCellViewModel>();
             builder.Services.AddGrpcClient<Shipment.ShipmentClient>(o =>

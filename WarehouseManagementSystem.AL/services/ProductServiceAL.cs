@@ -22,5 +22,11 @@ namespace WarehouseManagementSystem.AL.services
             var results = await unitOfWork.ProductRepository.GetProducts();
             return results.Adapt<ProductDto[]>();
         }
+
+        public async Task<PartyDto[]> GetPartiesToCell()
+        {
+            var result = await unitOfWork.ProductRepository.GetParty();
+            return result.Adapt<PartyDto[]>();
+        }
     }
 }

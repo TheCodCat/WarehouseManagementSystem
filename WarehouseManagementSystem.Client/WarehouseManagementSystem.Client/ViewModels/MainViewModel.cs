@@ -66,7 +66,8 @@ namespace WarehouseManagementSystem.Client.ViewModels
 
                 var result = await shipmentClient.SetShipmentAsync(request);
 
-                mainPage.Navigation.PushModalAsync(new ProductAndCellPage(services.GetRequiredService<ProductAndCellViewModel>()));
+                var productPage = services.GetRequiredService<ProductAndCellPage>();
+                await mainPage.Navigation.PushAsync(productPage);
                 services.GetRequiredService<ProductAndCellViewModel>().ShipmentResponce = result;
             }
             catch(Exception ex)

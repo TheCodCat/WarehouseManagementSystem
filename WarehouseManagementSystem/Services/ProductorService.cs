@@ -23,5 +23,15 @@ namespace WarehouseManagementSystem.PL.Services
 
             return responce;
         }
+
+        public override async Task<ShipmentResponce> GetPartiesToCell(Empty request, ServerCallContext context)
+        {
+            var result = await productServiceAL.GetPartiesToCell();
+            var partyes = result.Adapt<PartyResponce[]>();
+            var responce = new ShipmentResponce();
+            responce.Responce.AddRange(partyes);
+
+            return responce;
+        }
     }
 }

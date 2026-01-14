@@ -43,7 +43,8 @@
             </FlexLayout>
         </ScrollView>
 
-        <material:ButtonView Margin="20" VerticalOptions="End" HorizontalOptions="End" HeightRequest="50" WidthRequest="50">
+        <material:ButtonView Margin="20" VerticalOptions="End" HorizontalOptions="End" HeightRequest="50" WidthRequest="50"
+        TappedCommand="{Binding PopModalNextCommand}">
             <Image>
                 <Image.Source>
                     <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.AngleRight}"/>
