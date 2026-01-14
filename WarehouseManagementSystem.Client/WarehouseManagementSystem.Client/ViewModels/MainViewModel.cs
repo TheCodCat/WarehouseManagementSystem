@@ -54,13 +54,18 @@ namespace WarehouseManagementSystem.Client.ViewModels
         {
             try
             {
+                var mainPage = services.GetRequiredService<MainPage>();
+
+                var alertResult = await mainPage.DisplayAlertAsync("Подтвердите действие","Полученны все товары?", "Да", "Нет");
+
+                if (!alertResult) return;
+
                 IsRequest = true;
                 var request = new ShipmentRequest();
                 request.Partys.AddRange(ShipmentBoardDtos.Adapt<List<Party>>());
 
                 var result = await shipmentClient.SetShipmentAsync(request);
 
-                var mainPage = services.GetRequiredService<MainPage>();
                 mainPage.Navigation.PushAsync(new ProductAndCellPage(services.GetRequiredService<ProductAndCellViewModel>()));
                 services.GetRequiredService<ProductAndCellViewModel>().ShipmentResponce = result;
             }
