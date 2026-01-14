@@ -6,7 +6,7 @@
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:components="clr-namespace:WarehouseManagementSystem.Client.Components"
              xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
-             x:Class="WarehouseManagementSystem.Client.MainPage">
+             x:Class="WarehouseManagementSystem.Client.Pages.MainPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

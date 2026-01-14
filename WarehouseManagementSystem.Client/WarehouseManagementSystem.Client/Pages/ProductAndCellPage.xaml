@@ -8,11 +8,33 @@
              xmlns:components="clr-namespace:WarehouseManagementSystem.Client.Components"
              xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
              Title="Получение ячейки хранения">
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <FlexLayout BindableLayout.ItemsSource="{Binding ShipmentResponce.Responce}"
+    Direction="Row"
+    Wrap="Wrap"
+    JustifyContent="Start"
+    AlignItems="Start"
+    Margin="10">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="10" Margin="2">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Id, StringFormat='Номер заявки - {0}'}"/>
+                            <BoxView StyleClass="Divider"/>
+                            <Label Text="{Binding Party.Count, StringFormat='Количество - {0}'}"/>
+                            <BoxView StyleClass="Divider"/>
+                            <Label Text="{Binding Party.Product.Name, StringFormat='Название - {0}'}"/>
+                            <BoxView StyleClass="Divider"/>
+                            <Label Text="{Binding Party.Product.Description}"/>
+                            <Label Text="{Binding CellTitle}" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </ScrollView>
 </ContentPage>

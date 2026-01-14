@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using WarehouseManagementSystem.Client.Models;
 using WarehouseManagementSystemServer;
 
 namespace WarehouseManagementSystem.Client.ViewModels
@@ -10,9 +8,5 @@ namespace WarehouseManagementSystem.Client.ViewModels
     {
         [ObservableProperty]
         private ShipmentResponce shipmentResponce;
-
-        partial void OnShipmentResponceChanging(ShipmentResponce? oldValue, ShipmentResponce newValue)
-        {
-        }
     }
 }

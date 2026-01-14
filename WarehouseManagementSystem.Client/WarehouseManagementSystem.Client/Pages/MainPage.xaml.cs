@@ -2,7 +2,7 @@
 using WarehouseManagementSystem.Client.ViewModels;
 using WarehouseManagementSystemServer;
 
-namespace WarehouseManagementSystem.Client
+namespace WarehouseManagementSystem.Client.Pages
 {
     public partial class MainPage : ContentPage
     {
