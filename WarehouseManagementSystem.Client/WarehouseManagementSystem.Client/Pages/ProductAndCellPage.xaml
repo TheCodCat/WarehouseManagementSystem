@@ -9,32 +9,46 @@
              xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
              Title="Получение ячейки хранения">
 
-    <ScrollView>
-        <FlexLayout BindableLayout.ItemsSource="{Binding ShipmentResponce.Responce}"
-    Direction="Row"
-    Wrap="Wrap"
-    JustifyContent="Start"
-    AlignItems="Start"
-    Margin="10">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Border Padding="10" Margin="2">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="3"/>
-                        </Border.StrokeShape>
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Id, StringFormat='Номер заявки - {0}'}"/>
-                            <BoxView StyleClass="Divider"/>
-                            <Label Text="{Binding Party.Count, StringFormat='Количество - {0}'}"/>
-                            <BoxView StyleClass="Divider"/>
-                            <Label Text="{Binding Party.Product.Name, StringFormat='Название - {0}'}"/>
-                            <BoxView StyleClass="Divider"/>
-                            <Label Text="{Binding Party.Product.Description}"/>
-                            <Label Text="{Binding CellTitle}" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold"/>
-                        </VerticalStackLayout>
-                    </Border>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
-    </ScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollView>
+            <FlexLayout BindableLayout.ItemsSource="{Binding ShipmentResponce.Responce}"
+        Direction="Row"
+        Wrap="Wrap"
+        JustifyContent="Start"
+        AlignItems="Start"
+        Margin="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Id, StringFormat='Номер заявки - {0}'}"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Label Text="{Binding Party.Count, StringFormat='Количество - {0}'}"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Label Text="{Binding Party.Product.Name, StringFormat='Название - {0}'}"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Label Text="{Binding Party.Product.Description}"/>
+                                <Label Text="{Binding CellTitle}" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+
+        <material:ButtonView Margin="20" VerticalOptions="End" HorizontalOptions="End" HeightRequest="50" WidthRequest="50">
+            <Image>
+                <Image.Source>
+                    <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.AngleRight}"/>
+                </Image.Source>
+            </Image>
+        </material:ButtonView>
+    </Grid>
 </ContentPage>
