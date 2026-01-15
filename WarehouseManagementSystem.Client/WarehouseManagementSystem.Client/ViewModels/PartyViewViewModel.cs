@@ -56,6 +56,14 @@ namespace WarehouseManagementSystem.Client.ViewModels
 
                 PartyViews = clone;
             }
+            else if (resultIndex)
+            {
+                var clone = new ShipmentResponce();
+                int.TryParse(newValue, out int resultInt);
+                clone.Responce.AddRange(shipmentResponce.Responce.Where(x => x.Id == resultInt));
+
+                PartyViews = clone;
+            }
         }
     }
 }
