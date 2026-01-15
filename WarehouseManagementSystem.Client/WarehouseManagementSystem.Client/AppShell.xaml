@@ -5,17 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WarehouseManagementSystem.Client"
     xmlns:page="clr-namespace:WarehouseManagementSystem.Client.Pages"
-    Shell.FlyoutBehavior="Flyout"
-    Title="WarehouseManagementSystem.Client">
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        Title="Home"
+        Title="Отгрузка партий"
         ContentTemplate="{DataTemplate page:MainPage}"
         Route="MainPage" />
 
     <ShellContent
-    Title="Test"
-    ContentTemplate="{DataTemplate page:ProductAndCellPage}"
-    Route="ProductAndCellPage"/>
+    Title="Партии"
+    ContentTemplate="{DataTemplate page:PartyViewPage}"
+    Route="PartyViewPage"/>
 
 </Shell>

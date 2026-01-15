@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uranium:UraniumContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseManagementSystem.Client.Pages.PartyViewPage"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:converts="clr-namespace:WarehouseManagementSystem.Client.Converts"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+             xmlns:components="clr-namespace:WarehouseManagementSystem.Client.Components"
+             xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:vm="clr-namespace:WarehouseManagementSystem.Client.ViewModels"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollView>
+            <FlexLayout BindableLayout.ItemsSource="{Binding PartyViews.Responce}"
+    Direction="Row"
+    Wrap="Wrap"
+    JustifyContent="Start"
+    AlignItems="Start"
+    Margin="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" Margin="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="3"/>
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="{Binding Id, StringFormat='Номер заявки - {0}'}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>
+                                <Label Text="{Binding CellTitle}" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Label Text="{Binding Party.Count, StringFormat='Количество - {0}'}"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Label Text="{Binding Party.Product.Name, StringFormat='Название - {0}'}"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Label Text="{Binding Party.Product.Description}"/>
+                                <BoxView StyleClass="Divider"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <material:ButtonView>
+                                        <material:ButtonView.StrokeShape>
+                                            <RoundRectangle CornerRadius="10,0,10,0"/>
+                                        </material:ButtonView.StrokeShape>
+                                        <Label Text="Забрали" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    </material:ButtonView>
+                                    <material:ButtonView Grid.Column="1">
+                                        <material:ButtonView.StrokeShape>
+                                            <RoundRectangle CornerRadius="0,10,0,10"/>
+                                        </material:ButtonView.StrokeShape>
+                                        <Label Text="Возврат" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    </material:ButtonView>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+
+    </Grid>
+
+    <uranium:UraniumContentPage.Attachments>
+        <material:BackdropView>
+            <material:BackdropView.IconImageSource>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:Solid.Filter}" Color="Purple"/>
+            </material:BackdropView.IconImageSource>
+            <VerticalStackLayout Spacing="5">
+                <input:AdvancedEntry Text="{Binding SelectionFillter}" Title="Фильтрация по номеру или ячейке" CornerRadius="3" BorderColor="Purple"/>
+                <input:CheckBox Text="Отправленные" Type="Material"/>
+                <BoxView StyleClass="Divider"/>
+            </VerticalStackLayout>
+        </material:BackdropView>
+    </uranium:UraniumContentPage.Attachments>
+
+</uranium:UraniumContentPage>

@@ -31,6 +31,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="InputKit.Maui" Version="4.6.0" />
 		<PackageReference Include="Mapster" Version="7.4.0" />
 		<PackageReference Include="Mapster.Async" Version="2.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
@@ -49,6 +50,9 @@
 	
   <ItemGroup>
     <MauiXaml Update="Components\ShipmentBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Pages\PartyViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Pages\ProductAndCellPage.xaml">

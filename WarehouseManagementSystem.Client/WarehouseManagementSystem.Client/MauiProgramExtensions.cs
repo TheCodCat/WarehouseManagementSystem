@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using InputKit.Handlers;
+using Mapster;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
 using WarehouseManagementSystem.Client.Models;
@@ -24,11 +25,20 @@ namespace WarehouseManagementSystem.Client
                     fonts.AddMaterialSymbolsFonts();
                     fonts.AddFontAwesomeIconFonts();
                 });
+
+            builder.UseMauiApp<App>()
+                .ConfigureMauiHandlers(handles => 
+                {
+                    handles.AddInputKitHandlers();
+            });
+
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<ProductAndCellPage>();
             builder.Services.AddScoped<MainViewModel>();
             builder.Services.AddScoped<ProductAndCellViewModel>();
+            builder.Services.AddScoped<PartyViewViewModel>();
+
             builder.Services.AddGrpcClient<Shipment.ShipmentClient>(o =>
             {
                 o.Address = new Uri("http://localhost:5103");
