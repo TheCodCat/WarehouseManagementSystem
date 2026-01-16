@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using WarehouseManagementSystem.Client.Models;
 using WarehouseManagementSystem.Client.Pages;
+using WarehouseManagementSystem.Client.Services;
 using WarehouseManagementSystemServer;
 
 namespace WarehouseManagementSystem.Client.ViewModels
@@ -21,8 +22,8 @@ namespace WarehouseManagementSystem.Client.ViewModels
         [RelayCommand]
         public async void PopModalNext()
         {
-            var page = _serviceProvider.GetRequiredService<ProductAndCellPage>();
-            await page?.Navigation.PopAsync();
+            var page = _serviceProvider.GetRequiredService<INavigationService>();
+            await page?.PopAsync();
         }
     }
 }

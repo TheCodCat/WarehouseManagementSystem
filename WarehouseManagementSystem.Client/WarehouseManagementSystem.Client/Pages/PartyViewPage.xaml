@@ -27,7 +27,7 @@
                     <DataTemplate>
                         <Border Margin="2" WidthRequest="300" HeightRequest="400">
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="3"/>
+                                <RoundRectangle CornerRadius="5,5,10,10"/>
                             </Border.StrokeShape>
                             <Grid Padding="0,10,0,0">
                                 <Grid.RowDefinitions>

@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Text.RegularExpressions;
+using WarehouseManagementSystem.Client.Pages;
+using WarehouseManagementSystem.Client.Services;
 using WarehouseManagementSystemServer;
 
 namespace WarehouseManagementSystem.Client.ViewModels
@@ -7,6 +10,7 @@ namespace WarehouseManagementSystem.Client.ViewModels
     public partial class PartyViewViewModel : ObservableObject
     {
         private readonly Productor.ProductorClient _client;
+        private readonly IServiceProvider serviceProvider;
 
         private ShipmentResponce shipmentResponce;
 
@@ -16,9 +20,10 @@ namespace WarehouseManagementSystem.Client.ViewModels
         [ObservableProperty]
         private string selectionFillter;
 
-        public PartyViewViewModel(Productor.ProductorClient productorClient)
+        public PartyViewViewModel(Productor.ProductorClient productorClient, IServiceProvider serviceProvider)
         {
             _client = productorClient;
+            this.serviceProvider = serviceProvider;
         }
 
         public async Task GetAllParty()
@@ -64,6 +69,15 @@ namespace WarehouseManagementSystem.Client.ViewModels
 
                 PartyViews = clone;
             }
+        }
+
+        [RelayCommand]
+        private async void OverviewParty(PartyResponce partyResponce)
+        {
+            var nav = serviceProvider.GetRequiredService<INavigationService>();
+            var vm = serviceProvider.GetRequiredService<PartyViewModel>();
+            nav?.PushAsync(new PartyPage(vm));
+            vm.PartyResponce = partyResponce;
         }
     }
 }

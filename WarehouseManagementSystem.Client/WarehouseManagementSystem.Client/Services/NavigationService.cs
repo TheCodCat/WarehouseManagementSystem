@@ -22,5 +22,15 @@ namespace WarehouseManagementSystem.Client.Services
         {
             await _application.Windows[0].Navigation.PopModalAsync();
         }
+
+        public async Task PushAsync(Page page)
+        {
+            await _application.Windows[0].Navigation.PushAsync(page);
+        }
+
+        public async Task PopAsync()
+        {
+            await _application.Windows[0].Navigation.PopAsync();
+        }
     }
 }

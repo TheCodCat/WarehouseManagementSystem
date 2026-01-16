@@ -14,14 +14,6 @@ namespace WarehouseManagementSystem.Client.Pages
             BindingContext = vm;
         }
 
-        public PartyViewViewModel PartyViewViewModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
