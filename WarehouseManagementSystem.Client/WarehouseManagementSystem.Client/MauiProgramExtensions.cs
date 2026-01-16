@@ -12,6 +12,7 @@ namespace WarehouseManagementSystem.Client
 {
     public static class MauiProgramExtensions
     {
+
         public static MauiAppBuilder UseSharedMauiApp(this MauiAppBuilder builder)
         {
             builder

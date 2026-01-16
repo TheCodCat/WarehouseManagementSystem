@@ -4,7 +4,7 @@ using WarehouseManagementSystemServer;
 
 namespace WarehouseManagementSystem.Client.Pages
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : MainViewModel
     {
         MainViewModel mainViewModel;
         public MainPage(MainViewModel mainViewModel)
@@ -12,6 +12,14 @@ namespace WarehouseManagementSystem.Client.Pages
             InitializeComponent();
             BindingContext = mainViewModel;
             this.mainViewModel = mainViewModel;
+        }
+
+        public MainViewModel MainViewModel
+        {
+            get => default;
+            set
+            {
+            }
         }
 
         protected override void OnAppearing()

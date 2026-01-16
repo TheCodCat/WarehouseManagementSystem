@@ -9,4 +9,12 @@ public partial class ProductAndCellPage : ContentPage
 		InitializeComponent();
 		BindingContext = productAndCellViewModel;
 	}
+
+    public ProductAndCellViewModel ProductAndCellViewModel
+    {
+        get => default;
+        set
+        {
+        }
+    }
 }

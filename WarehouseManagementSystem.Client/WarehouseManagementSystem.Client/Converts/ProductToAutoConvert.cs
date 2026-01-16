@@ -9,6 +9,14 @@ namespace WarehouseManagementSystem.Client.Converts
 {
     public class ProductToAutoConvert : IValueConverter
     {
+        public ProductMaui ProductMaui
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
        {
             if(value is List<ProductMaui> productMauis)

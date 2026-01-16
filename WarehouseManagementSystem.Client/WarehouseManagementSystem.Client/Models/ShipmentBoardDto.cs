@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WarehouseManagementSystem.Client.Models
 {
-    public class ShipmentBoardDto
+    public class ShipmentBoardDto : Components.ShipmentBoard
     {
         public int Id { get; set; }
         public string Title { get; set; }
