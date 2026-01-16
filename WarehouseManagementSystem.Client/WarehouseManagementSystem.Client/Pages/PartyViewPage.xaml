@@ -20,44 +20,38 @@
             <FlexLayout BindableLayout.ItemsSource="{Binding PartyViews.Responce}"
     Direction="Row"
     Wrap="Wrap"
-    JustifyContent="Start"
+    JustifyContent="Center"
     AlignItems="Start"
     Margin="10">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Border Padding="10" Margin="2">
+                        <Border Margin="2" WidthRequest="300" HeightRequest="400">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="3"/>
                             </Border.StrokeShape>
-                            <VerticalStackLayout Spacing="2">
-                                <Label Text="{Binding Id, StringFormat='Номер заявки - {0}'}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>
-                                <Label Text="{Binding CellTitle}" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold"/>
-                                <BoxView StyleClass="Divider"/>
-                                <Label Text="{Binding Party.Count, StringFormat='Количество - {0}'}"/>
-                                <BoxView StyleClass="Divider"/>
-                                <Label Text="{Binding Party.Product.Name, StringFormat='Название - {0}'}"/>
-                                <BoxView StyleClass="Divider"/>
-                                <Label Text="{Binding Party.Product.Description}"/>
-                                <BoxView StyleClass="Divider"/>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*"/>
-                                        <ColumnDefinition Width="1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <material:ButtonView>
-                                        <material:ButtonView.StrokeShape>
-                                            <RoundRectangle CornerRadius="10,0,10,0"/>
-                                        </material:ButtonView.StrokeShape>
-                                        <Label Text="Забрали" HorizontalTextAlignment="Center" TextColor="White"/>
-                                    </material:ButtonView>
-                                    <material:ButtonView Grid.Column="1">
-                                        <material:ButtonView.StrokeShape>
-                                            <RoundRectangle CornerRadius="0,10,0,10"/>
-                                        </material:ButtonView.StrokeShape>
-                                        <Label Text="Возврат" HorizontalTextAlignment="Center" TextColor="White"/>
-                                    </material:ButtonView>
-                                </Grid>
-                            </VerticalStackLayout>
+                            <Grid Padding="0,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <VerticalStackLayout Spacing="2" Padding="10,0,10,0">
+                                    <Label Text="{Binding Id, StringFormat='Номер заявки - {0}'}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>
+                                    <Label Text="{Binding CellTitle}" HorizontalTextAlignment="Center" FontSize="24" FontAttributes="Bold"/>
+                                    <BoxView StyleClass="Divider"/>
+                                    <Label Text="{Binding Party.Count, StringFormat='Количество - {0}'}"/>
+                                    <BoxView StyleClass="Divider"/>
+                                    <Label Text="{Binding Party.Product.Name, StringFormat='Название - {0}'}"/>
+                                    <BoxView StyleClass="Divider"/>
+                                    <Label Text="{Binding Party.Product.Description, Converter={converts:CroppingDescriptionConvert}}"/>
+                                    <BoxView StyleClass="Divider"/>
+                                </VerticalStackLayout>
+                                <material:ButtonView Grid.Row="1">
+                                    <material:ButtonView.StrokeShape>
+                                        <RoundRectangle CornerRadius="0,0,0,0"/>
+                                    </material:ButtonView.StrokeShape>
+                                    <Label Text="Подробнее" HorizontalTextAlignment="Center" TextColor="White"/>
+                                </material:ButtonView>
+                            </Grid>
                         </Border>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

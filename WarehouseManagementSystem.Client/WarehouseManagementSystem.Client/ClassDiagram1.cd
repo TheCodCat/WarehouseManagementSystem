@@ -1,2 +1,111 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WarehouseManagementSystem.Client.ViewModels.MainViewModel">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgBAAQAAAAAAAAAAAAAAQAAABCQBQAAAAIACAAA=</HashCode>
+      <FileName>ViewModels\ShipmentBoardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.ViewModels.PartyViewViewModel">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAEAAABIAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>ViewModels\PartyViewViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.ViewModels.ProductAndCellViewModel">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ViewModels\ProductAndCellViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Pages.MainPage" Collapsed="true">
+    <Position X="1.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAIAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainViewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Pages.PartyViewPage" Collapsed="true">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\PartyViewPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PartyViewViewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Pages.ProductAndCellPage" Collapsed="true">
+    <Position X="3.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Pages\ProductAndCellPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProductAndCellViewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Converts.ProductToAutoConvert">
+    <Position X="9.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converts\ProductToAutoConvert.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProductMaui" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Components.ShipmentBoard" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\ShipmentBoard.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Models.PartyMaui" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PartyMaui.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Models.PartyResp" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEACAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PartyResp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Models.ProductMaui" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProductMaui.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.Models.ShipmentBoardDto" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAgAEAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ShipmentBoardDto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ShipmentBoard" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WarehouseManagementSystem.Client.MauiProgramExtensions">
+    <Position X="9.25" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MauiProgramExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

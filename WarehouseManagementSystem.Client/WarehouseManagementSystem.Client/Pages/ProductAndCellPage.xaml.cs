@@ -4,11 +4,11 @@ namespace WarehouseManagementSystem.Client.Pages;
 
 public partial class ProductAndCellPage : ContentPage
 {
-	public ProductAndCellPage(ProductAndCellViewModel productAndCellViewModel)
-	{
-		InitializeComponent();
-		BindingContext = productAndCellViewModel;
-	}
+    public ProductAndCellPage(ProductAndCellViewModel productAndCellViewModel)
+    {
+        InitializeComponent();
+        BindingContext = productAndCellViewModel;
+    }
 
     public ProductAndCellViewModel ProductAndCellViewModel
     {

@@ -32,8 +32,9 @@ namespace WarehouseManagementSystem.Client
                 {
                     handles.AddInputKitHandlers();
             });
-
             builder.Services.AddSingleton<INavigationService, NavigationService>();
+            builder.Services.AddScoped<PartyPage>();
+            builder.Services.AddScoped<PartyViewModel>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<ProductAndCellPage>();
             builder.Services.AddScoped<MainViewModel>();

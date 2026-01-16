@@ -4,7 +4,7 @@ using WarehouseManagementSystemServer;
 
 namespace WarehouseManagementSystem.Client.Pages
 {
-    public partial class MainPage : MainViewModel
+    public partial class MainPage : ContentPage
     {
         MainViewModel mainViewModel;
         public MainPage(MainViewModel mainViewModel)
